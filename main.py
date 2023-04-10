@@ -17,8 +17,7 @@ def main(message):
     bot.send_message(message.chat.id, 'Введите логин')
     bot.register_next_step_handler(message, user_login)
 
-def user_login():
-    pass
+
 
 @bot.message_handler(commands=['start'])
 def main(message):
