@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Тест на экологию</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 16px;
+            background-color: #66cf66;
+		}
+		h1, h2 {
+			text-align: center;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #f7f7f7;
+		}
+		.question {
+			margin-top: 20px;
+		}
+		.btn {
+			display: block;
+			margin-top: 20px;
+			padding: 10px 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #fff;
+			cursor: pointer;
+		}
+		.btn:hover {
+			background-color: #f7f7f7;
+		}
+		.result {
+			margin-top: 20px;
+			text-align: center;
+			font-weight: bold;
+		}
+		.result-pass {
+			color: green;
+		}
+		.result-fail {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Тест на экологию</h1>
+		<form id="quiz">
+			<div class="question">
+				<h2>Вопрос 1</h2>
+				<p>Вы регулярно перерабатываете мусор и сортируете его по видам?</p>
+				<label><input type="radio" name="q1" value="yes"> Да</label>
+				<label><input type="radio" name="q1" value="no"> Нет</label>
+			</div>
+			<div class="question">
+				<h2>Вопрос 2</h2>
+				<p>Вы пользуетесь общественным транспортом или ходите пешком, если это возможно?</p>
+				<label><input type="radio" name="q2" value="yes"> Да</label>
+				<label><input type="radio" name="q2" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 3</h2>
+				<p>Вы стараетесь экономить энергию на рабочем месте, например, выключать компьютеры и другое оборудование в конце рабочего дня?</p>
+				<label><input type="radio" name="q3" value="yes"> Да</label>
+				<label><input type="radio" name="q3" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 4</h2>
+				<p>Вы избегаете использования одноразовых пластиковых изделий, таких как стаканчики и приборы для еды?</p>
+				<label><input type="radio" name="q4" value="yes"> Да</label>
+				<label><input type="radio" name="q4" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 5</h2>
+				<p>Вы понимаете, как отходы, производимые вашей работой, влияют на окружающую среду, и стараетесь минимизировать их?</p>
+				<label><input type="radio" name="q5" value="yes"> Да</label>
+				<label><input type="radio" name="q5" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 6</h2>
+				<p>Вы используете энергосберегающие технологии и оборудование на своем рабочем месте?</p>
+				<label><input type="radio" name="q6" value="yes"> Да</label>
+				<label><input type="radio" name="q6" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 7</h2>
+				<p>Вы знаете, как правильно утилизировать отходы, чтобы минимизировать их воздействие на окружающую среду?</p>
+				<label><input type="radio" name="q7" value="yes"> Да</label>
+				<label><input type="radio" name="q7" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 8</h2>
+				<p>Вы поддерживаете инициативы, направленные на защиту окружающей среды, проводимые вашей компанией или другими организациями?</p>
+				<label><input type="radio" name="q8" value="yes"> Да</label>
+				<label><input type="radio" name="q8" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 9</h2>
+				<p>Вы знаете о том, что делает ваша компания для защиты окружающей среды?</p>
+				<label><input type="radio" name="q9" value="yes"> Да</label>
+				<label><input type="radio" name="q9" value="no"> Нет</label>
+			</div>
+            <div class="question">
+				<h2>Вопрос 10</h2>
+				<p>Вы готовы внести свой вклад в улучшение экологической ситуации на своем рабочем месте и за его пределами?</p>
+				<label><input type="radio" name="q10" value="yes"> Да</label>
+				<label><input type="radio" name="q10" value="no"> Нет</label>
+			</div>
+			<button type="submit" class="btn">Завершить тест</button>
+		</form>
+		<div id="result" class="result"></div>
+        <button id="resetBtn" class="btn">Начать заново</button>
+
+<script>
+  const resetBtn = document.querySelector('#resetBtn');
+
+  resetBtn.addEventListener('click', function() {
+    window.location.reload();
+  });
+</script>
+
+	</div>
+	<script>
+		const quizForm = document.getElementById('quiz');
+		const resultElem = document.getElementById('result');
+        quizForm.addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			const formData = new FormData(quizForm);
+			let score = 0;
+
+			for (let pair of formData.entries()) {
+				if (pair[1] === 'yes') {
+					score++;
+				}
+			}
+
+			resultElem.textContent = `Ваш результат: ${score} из 10`;
+			resultElem.classList.remove('result-pass', 'result-fail');
+
+			if (score >= 7) {
+				resultElem.classList.add('result-pass');
+				resultElem.textContent += ' (Вы экологически осознанный человек!)';
+			} else {
+				resultElem.classList.add('result-fail');
+				resultElem.textContent += ' (Вам стоит обратить внимание на экологию)';
+			}
+		});
+	</script>
+    
+</body>
+</html>
